@@ -67,7 +67,7 @@ HUGGINGFACE_TOKEN=hf_XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ```bash
 export $(cat .env | xargs)
-python chatbot.py
+python3 chatbot.py
 ```
 
 
