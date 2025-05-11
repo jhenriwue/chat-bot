@@ -26,11 +26,8 @@ O objetivo é oferecer um assistente automatizado capaz de:
 2. Gere um token com:
    - `Read access`
    - `Access to gated models`
-3. Crie um arquivo `.env` com o seguinte conteúdo:
-
-```env
-HUGGINGFACE_TOKEN=hf_XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
+3. Logue com seu token do Hugging Face
+   - `huggingface-cli login`
 
 ## Como rodar o chatbot
 
@@ -51,22 +48,9 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 3. Configurando o token de acesso
-
-1. Acesse: [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
-2. Gere um token com:
-   - `Read access`
-   - `Access to gated models`
-3. Crie um arquivo `.env` com o seguinte conteúdo:
-
-```env
-HUGGINGFACE_TOKEN=hf_XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
-
-## 4. Execute o Chat Bot
+## 3. Execute o Chat Bot
 
 ```bash
-export $(cat .env | xargs)
 python3 chatbot.py
 ```
 

@@ -1,8 +1,5 @@
 from transformers import pipeline
 import torch
-import os
-
-token = os.getenv("HUGGINGFACE_TOKEN")
 
 # Carrega o modelo
 pipe = pipeline(
@@ -10,7 +7,6 @@ pipe = pipeline(
     model="meta-llama/Llama-3.2-3B-Instruct",
     trust_remote_code=True,
     torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-    use_auth_token=token,
     pad_token_id=128001
 )
 
@@ -21,7 +17,9 @@ history = "<|system|>\nVocê é um assistente de uma loja de esportes chamada Es
     Se a pergunta for fora desse tema de esporte, avise com educação que não pode ajudar. \
     Se não souber responder algo, diga diretamente que não possui essa informação.\
     Lembre-se: seu foco é artigos de esporte e esportes em geral. \
-    Não comente sobre outros temas, mesmo que o usuário insista."
+    Não comente e nem dê sugestão sobre outros possíveis temas, mesmo que o usuário insista. \
+    Retorne sempre sem caracteres diferentes como < | e derivados \
+    se pedirem outro tema apenas diga que nao sabe e seu foco é esportes"
 
 print("LLaMA Chatbot (digite 'sair' para encerrar)\n")
 
@@ -42,5 +40,5 @@ while True:
 
     print(f"Assistente: {resposta}\n")
 
-    # Atualiza o histórico
+    # Atualiza o histórico de instruções
     history += f"<|user|>\n{user_input}\n<|assistant|>\n{resposta}\n"
